@@ -13,11 +13,12 @@
 
 \begin{code}
 
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --without-K --no-level-universe #-}
 
-import index                -- Of --safe modules.
-import Unsafe.index         -- Of unsafe modules.
-import InfinitePigeon.index -- Disables termination check for bar recursion.
+import index                    -- Of --safe modules using --level-universe.
+import GamesExperimental.index  -- With --safe but --no-level-universe.
+import Unsafe.index             -- Of unsafe modules.
+import InfinitePigeon.index     -- Disables termination check for bar recursion.
 
 \end{code}
 
