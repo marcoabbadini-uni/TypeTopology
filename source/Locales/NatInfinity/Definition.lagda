@@ -41,7 +41,7 @@ is-open : 𝓟 {𝓤₀} ℕ∞ → 𝓤₀  ̇
 is-open P =  ∞ ∈ P → ∃ n ꞉ ℕ , (ℕ-to-ℕ∞ n) ∈ P
 
 being-open-is-prop : (P : 𝓟 {𝓤₀} ℕ∞) → is-prop (is-open P)
-being-open-is-prop P = {!Π-is-prop!}
+being-open-is-prop P = Π-is-prop fe (λ n → ∥∥-is-prop)
 
 
 Open : 𝓤₁  ̇
