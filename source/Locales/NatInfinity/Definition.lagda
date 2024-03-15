@@ -53,7 +53,7 @@ _⊆ᵖ_ : Open → Open → Ω 𝓤₀
 
 
 ⊆ᵖ-is-reflexive : is-reflexive _⊆ᵖ_ holds
-⊆ᵖ-is-reflexive (P , _) n p = p 
+⊆ᵖ-is-reflexive (P , _) n p = p
 
 ⊆ᵖ-is-transitive : is-transitive _⊆ᵖ_ holds
 ⊆ᵖ-is-transitive (P₀ , u₀) (P₁ , u₁) (P₂ , u₂) p q = ⊆-trans P₀ P₁ P₂ p  q
