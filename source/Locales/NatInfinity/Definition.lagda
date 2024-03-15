@@ -20,13 +20,14 @@ module Locales.NatInfinity.Definition
         (fe : Fun-Ext)
        where
 
-open import CoNaturals.GenericConvergentSequence
+open import CoNaturals.GenericConvergentSequence hiding (max)
 open import Locales.Frame pt fe
 open import UF.Logic
 open import UF.Powerset-MultiUniverse
 open import UF.Subsingletons
 open import UF.SubtypeClassifier
 open import UF.Subsingletons-FunExt
+open import Naturals.Order
 
 open AllCombinators pt fe
 open PropositionalTruncation pt
@@ -39,7 +40,7 @@ open PropositionalSubsetInclusionNotation fe
 
 
 is-open : 𝓟 {𝓤₀} ℕ∞ → 𝓤₀  ̇
-is-open P =  ∞ ∈ P → ∃ n ꞉ ℕ , (ℕ-to-ℕ∞ n) ∈ P
+is-open P =  ∞ ∈ P → ∃ n ꞉ ℕ , ((m : ℕ) → (n ≤ℕ m) → (ℕ-to-ℕ∞ m) ∈ P)
 
 being-open-is-prop : (P : 𝓟 {𝓤₀} ℕ∞) → is-prop (is-open P)
 being-open-is-prop P = Π-is-prop fe (λ n → ∥∥-is-prop)
@@ -62,7 +63,7 @@ _⊆ᵖ_ : Open → Open → Ω 𝓤₀
 ⊆ᵖ-is-preorder = (⊆ᵖ-is-reflexive , ⊆ᵖ-is-transitive)
 
 full∞ : Open
-full∞ = full , λ x → ∣ 0 , ⋆ ∣
+full∞ = full , λ x → ∣ 0 , (λ m x₁ → ⋆) ∣
 
 full∞-is-top : (P : Open) → (P ⊆ᵖ full∞) holds
 full∞-is-top (P , u) _ _ = ⋆
@@ -74,13 +75,13 @@ _∩∞_ : Open → Open → Open
 (P , u) ∩∞ (Q , v) = P ∩ Q , †
  where
   † : is-open (P ∩ Q)
-  † (p , q) = ∥∥-rec ∃-is-prop β (u p)
-   where
-    β : Σ m ꞉ ℕ , P (ℕ-to-ℕ∞ m) holds → ∃ (λ n → (P ∩ Q) (ℕ-to-ℕ∞ n) holds)
-    β (m , p₀) = ∥∥-rec ∃-is-prop γ (v q)
-     where
-      γ : Σ n ꞉ ℕ , Q (ℕ-to-ℕ∞ n) holds → ∃ (λ n → (P ∩ Q) (ℕ-to-ℕ∞ n) holds)
-      γ (n , q₀) = {!!}
+  † (p , q) = {!!} -- ∥∥-rec ∃-is-prop β ?
+   --where
+   -- β : Σ m ꞉ ℕ , P (ℕ-to-ℕ∞ m) holds → ∃ (λ n → (P ∩ Q) (ℕ-to-ℕ∞ n) holds)
+   -- β (m , p₀) = ∥∥-rec ∃-is-prop γ {!!}
+    -- where
+     -- γ : Σ n ꞉ ℕ , Q (ℕ-to-ℕ∞ n) holds → ∃ (λ n → (P ∩ Q) (ℕ-to-ℕ∞ n) holds)
+      --γ (n , q₀) = ∣ max m n , {!!} , {!!} ∣
 
 ∩-gives-glb : (((P , u) , (Q , v)) : Open × Open) → (((P , u) ∩∞ (Q , v)) is-glb-of ((P , u) , (Q , v))) holds
 ∩-gives-glb (P , Q) = {!!} --((λ _ → pr₁) , (λ _ → pr₂))
