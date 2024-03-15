@@ -71,10 +71,16 @@ full∞-is-top (P , u) _ _ = ⋆
 open Meets _⊆ᵖ_
 
 _∩∞_ : Open → Open → Open
-(P , u) ∩∞ (Q , v) = P ∩ Q , {!∥∥-rec!}
+(P , u) ∩∞ (Q , v) = P ∩ Q , †
  where
-  † : {!!}
-  † = {!!}
+  † : is-open (P ∩ Q)
+  † (p , q) = ∥∥-rec ∃-is-prop β (u p)
+   where
+    β : Σ m ꞉ ℕ , P (ℕ-to-ℕ∞ m) holds → ∃ (λ n → (P ∩ Q) (ℕ-to-ℕ∞ n) holds)
+    β (m , p₀) = ∥∥-rec ∃-is-prop γ (v q)
+     where
+      γ : Σ n ꞉ ℕ , Q (ℕ-to-ℕ∞ n) holds → ∃ (λ n → (P ∩ Q) (ℕ-to-ℕ∞ n) holds)
+      γ (n , q₀) = {!!}
 
 ∩-gives-glb : (((P , u) , (Q , v)) : Open × Open) → (((P , u) ∩∞ (Q , v)) is-glb-of ((P , u) , (Q , v))) holds
 ∩-gives-glb (P , Q) = {!!} --((λ _ → pr₁) , (λ _ → pr₂))
