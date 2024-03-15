@@ -26,6 +26,7 @@ open import UF.Logic
 open import UF.Powerset-MultiUniverse
 open import UF.Subsingletons
 open import UF.SubtypeClassifier
+open import UF.Subsingletons-FunExt
 
 open AllCombinators pt fe
 open PropositionalTruncation pt
